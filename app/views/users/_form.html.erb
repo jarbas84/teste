@@ -1,0 +1,47 @@
+<div class="container">
+    <%= form_with(model: user, local: true) do |form| %>
+      <% if user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+          <ul>
+            <% user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    <div class="form-group">
+        <%= form.text_field :nome, class: "form-control", autofocus: true, required: 'true', placeholder: 'Insira Seu Nome' %>
+    </div>
+    <div class="form-group">
+        <%= form.number_field :cpf, class: "form-control", required: 'true', placeholder: 'Insira Seu CPF', min: 0 %>
+    </div>
+    <div class="form-group">
+        <%= form.number_field :agencia, class: "form-control",required: 'true', placeholder: 'Insira Agência', min: 0 %>
+    </div>
+    <div class="form-group">
+        <%= form.number_field :conta, class: "form-control", required: 'true', placeholder: 'Insira Conta', min: 0 %>
+    </div>
+    <div class="form-group">
+        <%= form.number_field :saldo, class: "form-control", required: 'true', placeholder: 'Insira Saldo Inicial', min: 0 %>
+    </div>
+    <div class="form-group">
+        <%= form.password_field :password_digest, class: "form-control", required: 'true', placeholder: 'Insira Sua Senha' %>
+    </div>
+
+    <div class="form-group">
+        <%= form.password_field :password_confirmation, class: "form-control", required: 'true', placeholder: 'Confirme Sua Senha' %>
+    </div>
+    <div class="form-check">
+        <%= form.radio_button :usuario, 1, :checked => true, class: "form-check-input" %>
+        <%= label :correntista, 'Correntista', class: "form-check-label" %>
+    </div>
+    <div class="form-check">
+        <%= form.radio_button :usuario, 0, :checked => true, class: "form-check-input" %>
+        <%= label :gerente, 'Gerente', class: "form-check-label" %>
+    </div>
+
+        <%= form.submit 'Enviar Dados', class: "btn btn-primary mb-3 mt-3" %>
+    <% end %>
+</div>

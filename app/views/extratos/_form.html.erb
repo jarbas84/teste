@@ -1,0 +1,27 @@
+<%= form_with(model: extrato, local: true) do |form| %>
+  <% if extrato.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(extrato.errors.count, "error") %> prohibited this extrato from being saved:</h2>
+
+      <ul>
+        <% extrato.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :historico %>
+    <%= form.text_field :historico %>
+  </div>
+
+  <div class="field">
+    <%= form.label :id_user %>
+    <%= form.number_field :id_user %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

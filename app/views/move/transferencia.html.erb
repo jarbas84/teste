@@ -1,0 +1,52 @@
+<table class="table table-dark mt-5">
+  <tr>
+    <th>Sua Conta:</th>
+    <th>Seu Nome:</th>
+    <th>CPF:</th>
+    <th>Sua Agencia</th>
+    <th>Sua Conta</th>
+    <th>Seu Saldo</th>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= @dados[0]['nome']%></td>
+    <td><%= @dados[0]['cpf']%></td>
+    <td><%= @dados[0]['agencia']%></td>
+    <td><%= @dados[0]['conta']%></td>
+    <td><%= @dados[0]['saldo']%></td>
+  </tr>
+  
+</table>
+<table class="table table-dark mt-5">
+  <tr>
+    <th>Para Quem Deseja Transferir?</th>
+    <th>Agencia</th>
+    <th>Conta</th>
+    <th>Valor</th>
+    <th class="text-center">Encargos</th>
+    <th></th>
+    <th></th>
+  </tr>
+<%= form_for :transferencia, url: calculotransferencia_path, method: :post do |f|%>
+  <tr>
+    <td></td>
+   	<td><%= f.number_field :agencia, autofocus: true, required: 'true' %></td>
+   	<td><%= f.number_field :conta, required: 'true' %></td>
+   	<td><%= f.number_field :valor, min: 0, required: 'true' %></td>
+   	<%= hidden_field_tag 'id_usuario',  @dados[0]['id'] %>
+    <%= hidden_field_tag 'saldo',  @dados[0]['saldo'] %>
+      <td>
+        <% if @horaAtual.to_i < 9 or @horaAtual.to_i >18 %>
+            Antes das 9h e após às 18h a taxa de transferência é de R$ 7,00
+            <% @taxa = 7 %>
+        <%else%>
+            Entre às 9h e 18h a taxa de transferência é de R$ 5,00
+            <% @taxa = 5 %>
+        <% end %>
+      </td>
+   	<td><%= f.submit "Realizar transferência", class: "btn btn-danger" %></td>
+    <td><%= link_to "Retornar", saldo_path(:user_id => @dados[0]['id']), method: :post, class: "btn btn-warning"%></td>
+  </tr>
+
+<% end %>  
+</table>

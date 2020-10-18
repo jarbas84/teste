@@ -1,0 +1,46 @@
+<div class="limiter">
+  <p id="notice"><%= notice %></p>
+    <div class="container-table100">
+      <div class="wrap-table100">
+        <div class="table100">
+          <table>
+            <thead>
+              <tr class="table100-head">
+                <th class="column1">Movimentações</th>
+                <% if  @user.usuario == 0 %>
+                <th class="column2">Editar</th>
+                <% end %>
+                  <th class="column3">Sair</th>
+                <th class="column4">Nome</th>
+                <th class="column5">CPF</th>
+                <th class="column6">Agência</th>
+                <th class="column7">Conta</th>
+                <th class="column8">Saldo</th>
+                <th class="column9">Usuário</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td class="column1"><%= link_to 'Movimentações', saldo_path(:user_id => @user.id), method: :post, class: "btn btn-warning" %></td>
+                    <% if @user.usuario == 0 %>
+                  <td class="column2"><%= link_to 'Editar', edit_user_path(@user), class: "btn btn-success" %></td>
+                    <% end %>
+                  <td class="column3"><%= link_to 'Sair', sair_path, method: :delete, class: "btn btn-danger" %></td>
+                  <td class="column4"><%= @user.nome %></td>
+                  <td class="column5"><%= @user.cpf %></td>
+                  <td class="column6"><%= @user.agencia %></td>
+                  <td class="column7"><%= @user.conta %></td>
+                  <td class="column8"><%= @user.saldo %></td>
+                  <% if  @user.usuario == 0 %>
+                    <td class="column9"> Gerência </td>
+                  <% else %>
+                    <td class="column9"> Correntista </td>
+                  <% end %>
+                </tr>
+                
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

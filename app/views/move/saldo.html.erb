@@ -1,0 +1,32 @@
+<div class="limiter">
+    <div class="container-table100">
+      <div class="wrap-table100">
+        <div class="table100">
+          <table>
+            <thead>
+              <tr class="table100-head">
+                <th class="column">Transações</th>
+                <th class="column">Saldo Atual</th>
+                <th class="column"></th>
+                <th class="column"></th>
+                <th class="column"></th>
+                <th class="column"></th>
+                <th class="column"></th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td class="column">Seja bem vindo(a) <%= @saldo[0]['nome'] %></td>
+                  <td class="column"><%= @saldo[0]['saldo'] %> Reais</td>
+                  <td class="column"><%= link_to 'Saque', saque_path(:valor_total => @saldo), method: :post, class: "btn btn-success" %></td>
+                  <td class="column"><%= link_to 'Depósito', deposito_path(:valor_total => @saldo), method: :post, class: "btn btn-warning" %></td>
+                  <td class="column"><%= link_to 'Transferências', transferencia_path(:dados => @saldo), method: :post, class: "btn btn-dark" %></td>
+                  <td class="column"><%= link_to 'Extrato', extratos_path(:dados => @saldo), method: :post, class: "btn btn-light" %></td>
+                  <td class="column"><%= link_to 'Sair', sair_path, method: :delete, class: "btn btn-danger" %></td>
+                </tr>        
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

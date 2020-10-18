@@ -1,0 +1,31 @@
+<% if  @valor_deposito['valor'].to_i < 0 %>
+  <% @valor_deposito['valor'] = @valor_deposito['valor'].to_i * -1 %>
+<% end %>
+
+<% @saldoFinal = @saldoTotal[0]['saldo'].to_i + @valor_deposito['valor'].to_i %>
+<div class="limiter">
+    <div class="container-table100">
+      <div class="wrap-table100">
+        <div class="table100">
+          <table>
+            <thead>
+              <tr class="table100-head">
+                <th class="column">Seu Depósito esta sendo Processado...</th>
+                <th class="column">Após o Depósito Seu Saldo Será De:</th>
+                <th class="column"></th>
+                <th class="column"></th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td class="column"></td>
+                  <td class="column"><%= @saldoFinal %></td>
+                  <td class="column"><%= link_to 'Deseja Continuar?', saldo_path(:user_id => @saldoTotal[0]['id'], :saldoFinal => @saldoFinal, :valor => @valor_deposito['valor'], :codigo => 'deposito'), method: :post, class: "btn btn-danger" %></td>
+                  <td class="column"><%= link_to 'Retornar', saldo_path(:user_id => @saldoTotal[0]['id'] ), method: :post, class: "btn btn-warning" %></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

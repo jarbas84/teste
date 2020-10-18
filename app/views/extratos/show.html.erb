@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Historico:</strong>
+  <%= @extrato.historico %>
+</p>
+
+<p>
+  <strong>Id user:</strong>
+  <%= @extrato.id_user %>
+</p>
+
+<%= link_to 'Edit', edit_extrato_path(@extrato) %> |
+<%= link_to 'Back', extratos_path %>
