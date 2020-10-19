@@ -6,33 +6,39 @@
           <table>
             <thead>
               <tr class="table100-head">
-                <th class="column1">Movimentações</th>
+                <th class="column">Movimentações</th>
                 <% if  @user.usuario == 0 %>
-                <th class="column2">Editar</th>
+                <th class="column">Editar</th>
+                <th class="column">Novo Cliente</th>
+                <th class="column">Ver Todos Os Clientes</th>
+                <th class="column">Ver Todos Os Gerentes</th>
                 <% end %>
-                  <th class="column3">Sair</th>
-                <th class="column4">Nome</th>
-                <th class="column5">CPF</th>
-                <th class="column6">Agência</th>
-                <th class="column7">Conta</th>
-                <th class="column8">Saldo</th>
-                <th class="column9">Usuário</th>
+                  <th class="column">Sair</th>
+                <th class="column">Nome</th>
+                <th class="column">CPF</th>
+                <th class="column">Agência</th>
+                <th class="column">Conta</th>
+                <th class="column">Saldo</th>
+                <th class="column">Usuário</th>
               </tr>
             </thead>
             <tbody>
                 <tr>
-                  <td class="column1"><%= link_to 'Movimentações', saldo_path(:user_id => @user.id), method: :post, class: "btn btn-warning" %></td>
+                  <td class="column"><%= link_to 'Movimentações', saldo_path, method: :post, class: "btn btn-warning" %></td>
                     <% if @user.usuario == 0 %>
-                  <td class="column2"><%= link_to 'Editar', edit_user_path(@user), class: "btn btn-success" %></td>
+                  <td class="column"><%= link_to 'Editar', edit_user_path(@user), class: "btn btn-success" %></td>
+                  <td class="column"><%= link_to 'Novo Cliente', new_user_path, class: "btn btn-info" %></td>
+                  <td class="column"><%= link_to 'Ver Todos os Clientes', clientes_path(:usuario => 1), class: "btn btn-info", method: :post %></td>
+                  <td class="column"><%= link_to 'Ver Todos os Gerentes', clientes_path(:usuario => 0), class: "btn btn-info", method: :post %></td>
                     <% end %>
-                  <td class="column3"><%= link_to 'Sair', sair_path, method: :delete, class: "btn btn-danger" %></td>
-                  <td class="column4"><%= @user.nome %></td>
-                  <td class="column5"><%= @user.cpf %></td>
-                  <td class="column6"><%= @user.agencia %></td>
-                  <td class="column7"><%= @user.conta %></td>
-                  <td class="column8"><%= @user.saldo %></td>
+                  <td class="column"><%= link_to 'Sair', sair_path, method: :delete, class: "btn btn-danger" %></td>
+                  <td class="column"><%= @user.nome %></td>
+                  <td class="column"><%= @user.cpf %></td>
+                  <td class="column"><%= @user.agencia %></td>
+                  <td class="column"><%= @user.conta %></td>
+                  <td class="column"><%= @user.saldo %></td>
                   <% if  @user.usuario == 0 %>
-                    <td class="column9"> Gerência </td>
+                    <td class="column"> Gerência </td>
                   <% else %>
                     <td class="column9"> Correntista </td>
                   <% end %>

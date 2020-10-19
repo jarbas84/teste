@@ -1,8 +1,10 @@
-<% if @valor_saque['valor'].to_i <= @saldoTotal[0]['saldo'].to_i %>
+
+<% if @valor_saque['valor'].to_i <= @saldoTotal['saldo'].to_i %>
 	<% if @valor_saque['valor'].to_i < 0 %>
 		<% @valor_saque['valor'] = @valor_saque['valor'].to_i * -1 %>
 	<% end %>
-<% @saldoFinal = @saldoTotal[0]['saldo'].to_i - @valor_saque['valor'].to_i %>
+<% @saldoFinal = @saldoTotal['saldo'].to_i - @valor_saque['valor'].to_i %>
+
 <div class="limiter">
 		<div class="container-table100">
 			<div class="wrap-table100">
@@ -22,8 +24,8 @@
 								<tr>
 									<td class="column"></td>
 									<td class="column"><%= @saldoFinal %> Reais</td>
-									<td class="column"><%= link_to 'Deseja Continuar?', saldo_path(:user_id => @saldoTotal[0]['id'], :saldoFinal => @saldoFinal, :valor => @valor_saque['valor'], :codigo => 'saque' ), method: :post %></td>
-									<td class="column"><%= link_to 'Retornar', saldo_path(:user_id => @saldoTotal[0]['id'] ), method: :post %></td>
+									<td class="column"><%= link_to 'Deseja Continuar?', saldo_path(:saldoFinal => @saldoFinal, :valor => @valor_saque['valor'], :codigo => 'saque' ), method: :post, class: "btn btn-danger"%></td>
+									<td class="column"><%= link_to 'Retornar', saldo_path, method: :post, class: "btn btn-warning" %></td>
 								</tr>
 						</tbody>
 					</table>
@@ -41,7 +43,7 @@
 							<tr class="table100-head">
 								<th class="column"></th>
 								<th class="column">Valor do Saque Maior Que o Disponivel em Conta</th>
-								<th class="column"><%= link_to 'Tente Novamente', saldo_path(:user_id => @saldoTotal[0]['id'] ), method: :post, class: "btn btn-warning" %></th>
+								<th class="column"><%= link_to 'Tente Novamente', saldo_path(:user_id => @saldoTotal['id'] ), method: :post, class: "btn btn-warning" %></th>
 								<th class="column"></th>
 							</tr>
 						</thead>

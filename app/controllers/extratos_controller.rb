@@ -6,7 +6,8 @@ class ExtratosController < ApplicationController
   # GET /extratos.json
   def index
     @extrato = params[:dados]
-    @extratoId = @extrato[0]['id']
+    @extratoId = @current_user.id
+    
     if !params[:filtro].present?
       @extratos = Extrato.where(id_user:  @extratoId).order('created_at DESC')
     else

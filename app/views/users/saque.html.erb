@@ -15,13 +15,12 @@
             <tbody>
                 <tr>
                   <td class="column"></td>
-                  <td class="column"><%= @valorEmConta[0]['saldo'] %></td>
+                  <td class="column"><%= @valorEmConta['saldo'] %></td>
                   <%= form_for :calculo, url: calculo_path, method: :post do |f|%>
                     <td class="column"><%= f.number_field :valor, min: 0, autofocus: true, required: 'true' %></td>
-                    <%= hidden_field_tag 'post_id',  @valorEmConta[0]['id'] %>
                     <td class="column"><%= f.submit "Sacar", class: "btn btn-danger" %></td>
                   <% end %>
-                  <td class="column"><%= link_to "Retornar", saldo_path(:user_id => @valorEmConta[0]['id']), method: :post, class: "btn btn-warning" %></td>
+                  <td class="column"><%= link_to "Retornar", saldo_path, method: :post, class: "btn btn-warning" %></td>
                 </tr>
             </tbody>
           </table>

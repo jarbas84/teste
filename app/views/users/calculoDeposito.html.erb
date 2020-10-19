@@ -2,7 +2,7 @@
   <% @valor_deposito['valor'] = @valor_deposito['valor'].to_i * -1 %>
 <% end %>
 
-<% @saldoFinal = @saldoTotal[0]['saldo'].to_i + @valor_deposito['valor'].to_i %>
+<% @saldoFinal = @saldoTotal['saldo'].to_i + @valor_deposito['valor'].to_i %>
 <div class="limiter">
     <div class="container-table100">
       <div class="wrap-table100">
@@ -20,8 +20,8 @@
                 <tr>
                   <td class="column"></td>
                   <td class="column"><%= @saldoFinal %></td>
-                  <td class="column"><%= link_to 'Deseja Continuar?', saldo_path(:user_id => @saldoTotal[0]['id'], :saldoFinal => @saldoFinal, :valor => @valor_deposito['valor'], :codigo => 'deposito'), method: :post, class: "btn btn-danger" %></td>
-                  <td class="column"><%= link_to 'Retornar', saldo_path(:user_id => @saldoTotal[0]['id'] ), method: :post, class: "btn btn-warning" %></td>
+                  <td class="column"><%= link_to 'Deseja Continuar?', saldo_path(:saldoFinal => @saldoFinal, :valor => @valor_deposito['valor'], :codigo => 'deposito'), method: :post, class: "btn btn-danger" %></td>
+                  <td class="column"><%= link_to 'Retornar', saldo_path, method: :post, class: "btn btn-warning" %></td>
                 </tr>
             </tbody>
           </table>

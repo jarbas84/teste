@@ -9,11 +9,11 @@
   </tr>
   <tr>
     <td></td>
-    <td><%= @dados[0]['nome']%></td>
-    <td><%= @dados[0]['cpf']%></td>
-    <td><%= @dados[0]['agencia']%></td>
-    <td><%= @dados[0]['conta']%></td>
-    <td><%= @dados[0]['saldo']%></td>
+    <td><%= @dados['nome']%></td>
+    <td><%= @dados['cpf']%></td>
+    <td><%= @dados['agencia']%></td>
+    <td><%= @dados['conta']%></td>
+    <td><%= @dados['saldo']%></td>
   </tr>
   
 </table>
@@ -33,8 +33,6 @@
    	<td><%= f.number_field :agencia, autofocus: true, required: 'true' %></td>
    	<td><%= f.number_field :conta, required: 'true' %></td>
    	<td><%= f.number_field :valor, min: 0, required: 'true' %></td>
-   	<%= hidden_field_tag 'id_usuario',  @dados[0]['id'] %>
-    <%= hidden_field_tag 'saldo',  @dados[0]['saldo'] %>
       <td>
         <% if @horaAtual.to_i < 9 or @horaAtual.to_i >18 %>
             Antes das 9h e após às 18h a taxa de transferência é de R$ 7,00
@@ -45,7 +43,7 @@
         <% end %>
       </td>
    	<td><%= f.submit "Realizar transferência", class: "btn btn-danger" %></td>
-    <td><%= link_to "Retornar", saldo_path(:user_id => @dados[0]['id']), method: :post, class: "btn btn-warning"%></td>
+    <td><%= link_to "Retornar", saldo_path, method: :post, class: "btn btn-warning"%></td>
   </tr>
 
 <% end %>  

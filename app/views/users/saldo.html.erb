@@ -16,8 +16,8 @@
             </thead>
             <tbody>
                 <tr>
-                  <td class="column">Seja bem vindo(a) <%= @saldo[0]['nome'] %></td>
-                  <td class="column"><%= @saldo[0]['saldo'] %> Reais</td>
+                  <td class="column">Seja bem vindo(a) <%= @saldo['nome'] %></td>
+                  <td class="column"><%= @saldo['saldo'] %> Reais</td>
                   <td class="column"><%= link_to 'Saque', saque_path(:valor_total => @saldo), method: :post, class: "btn btn-success" %></td>
                   <td class="column"><%= link_to 'Depósito', deposito_path(:valor_total => @saldo), method: :post, class: "btn btn-warning" %></td>
                   <td class="column"><%= link_to 'Transferências', transferencia_path(:dados => @saldo), method: :post, class: "btn btn-dark" %></td>

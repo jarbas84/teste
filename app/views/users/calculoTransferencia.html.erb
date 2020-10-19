@@ -1,0 +1,35 @@
+<% if @conta.present?%>
+	<% if @saldoDisponivel['saldo'].to_i > @contaBeneficiario['valor'].to_i %>
+		<table class="table table-dark mt-5">
+		  <tr>
+		  	<th>Nome do Beneficiário</th>
+		  	<th>CPF do Beneficiário</th>
+		    <th>Agencia do Beneficiário</th>
+		    <th>Conta do Beneficiário</th>
+		    <th>Valor a ser depositado + taxas</th>
+		    <th></th>
+		    <th></th>
+		  </tr>
+
+		  <tr>
+		  	<td><%= @conta[0]['nome'] %></td>
+		  	<td><%= @conta[0]['cpf'] %></td>
+		   	<td><%= @conta[0]['agencia'] %></td>
+		   	<td><%= @conta[0]['conta'] %></td>
+		   	<% if @contaBeneficiario['valor'].to_i > 1000 %>
+		   		<td>Acima de R$ 1.000,00 existe R$ 10,00 de encargo, Valor atualizado de RS <%= @contaBeneficiario['valor'].to_i + @taxa.to_i + 10 %></td>
+		   	<% else %>
+		   		<td><%= @contaBeneficiario['valor'].to_i + @taxa.to_i %></td>
+		   	<% end %>
+			<td><%= link_to 'Deseja Realizar a Transferência?', efetuatransferencia_path(:beneficiario => @conta[0]['id'], :valorTransferido => @contaBeneficiario['valor']), method: :post, class: "btn btn-danger" %></td>
+			<td><%= link_to 'Retornar', saldo_path, method: :post, class: "btn btn-warning" %></td>
+	<% else %>
+			<%= link_to 'Saldo Insuficiente, Refazer Transferência', saldo_path, method: :post, class: "mt-5 btn btn-warning btn-lg btn-block" %>
+	   		<% end %>
+	  </tr>
+	</table>
+
+<% else %>
+	
+	<%= link_to 'Sem Resultado Para A Conta Selecionada, Por Favor Digitar Novamente', saldo_path, method: :post, class: "btn btn-warning btn-lg btn-block mt-5" %>
+<% end %>
