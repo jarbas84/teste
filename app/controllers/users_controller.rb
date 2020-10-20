@@ -106,7 +106,7 @@ class UsersController < ApplicationController
         User.update(@id, saldo: @saldoFinal)
 
         deposito = Extrato.new
-        string_historico = "Deposito de #{@valorSaque} Reais. Saldo Atual é de #{@saldoFinal} Reais"
+        string_historico = "Deposito de #{@valorDepoito} Reais. Saldo Atual é de #{@saldoFinal} Reais"
         deposito.historico = string_historico
         deposito.id_user = @id
         deposito.created_at = Time.now.strftime("%Y-%m-%d %H:%M:%S")
@@ -171,7 +171,7 @@ class UsersController < ApplicationController
     User.update(@id_usuario, saldo: @valorSubtraido)
 
         transferencia_beneficiario = Extrato.new
-        string_historico = "Transferência de #{@valorTransferido} Reais. Saldo Atual é de #{@valorSubtraido} Reais"
+        string_historico = "Transferência de #{@valorTransferido} Reais. Saldo Atual é de #{@valorSomado} Reais"
         transferencia_beneficiario.historico = string_historico
         transferencia_beneficiario.id_user = @id_beneficiario
         transferencia_beneficiario.created_at = Time.now.strftime("%Y-%m-%d %H:%M:%S")
